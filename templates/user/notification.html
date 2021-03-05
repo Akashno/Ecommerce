@@ -1,0 +1,56 @@
+{% extends 'base.html ' %}
+{% load static %}
+{% block title %}
+Notifications
+{% endblock title %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'user/css/index.css' %}">
+
+{% endblock style%}
+{% block content%}
+<div class="row">
+    {% include 'user/!side-bar.html' %}
+    <div class="col-md-10 col-sm-12 main">
+        {% if notifications %}
+
+        <h4 class="mt-5 "><u>Your Notifications</u></h4>
+        <div class="container mt-5">
+            {% for item in notifications %}
+            <div class="row ">
+                <div class="col">
+                    <div class="alert  d-flex justify-content-between  {% if item.seen %}
+                                                alert-secondary
+                                        {% else %}
+                                                {% if item.success %} alert-success {% else %} alert-danger{% endif %}
+                                        {% endif %}">
+                       <div>
+                            {% if item.success %}
+                        <i class="fa fa-check" aria-hidden="true" style="color:green;"></i>
+                        <span class="text-secondary">Order Delivered for</span>
+                        {% else %}
+                        <i class="fa fa-times" aria-hidden="true" style="color:red;"></i>
+                        <span class="text-secondary">Order Canceled for</span>
+                        {% endif %}
+                        <span class="h6">{{item.text}}</span>
+                        <span>on {{item.date_created}}</span>
+                       </div>
+                        {% if not item.seen %}
+
+                       <form action="{% url 'seen' item.id %}">
+                            <input type="submit" value="mark as read">
+                        </form>
+                         {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-secondary">
+            <h5>No new notification</h5>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content%}

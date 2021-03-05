@@ -1,0 +1,56 @@
+{% extends 'base.html ' %}
+{% load static %}
+{% block title %}
+Index
+{% endblock title %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'user/css/index.css' %}">
+
+{% endblock style%}
+{% block content%}
+<div class="row ">
+    {% include 'user/!side-bar.html' %}
+    <div class="col-md-10 col-sm-12 main d-flex flex-column justify-content-center align-items-center" >
+        <div class="container-fluid">
+
+        </div>
+        {% for message in messages %}
+            <div class="alert alert-info">{{message}}</div>
+        {% endfor %}
+        {% if items %}
+        <h4><u>Your previous orders</u> </h4>
+        <div class="row text-center w-75 h5 border rounded border-danger p-3">
+            <div class="col-4">Name</div>
+            <div class="col-2">Quantity</div>
+            <div class="col-2">Total</div>
+
+            <div class="col-2">Action</div>
+        </div>
+        {% for item in items %}
+        <div class="row text-center w-75 rounded d-flex align-items-center " style="background-color:var(--secondary-color)">
+            <div class="col-4">{{item.product.name}}</div>
+            <div class="col-2">{{item.count}}</div>
+            <div class="col-2">{{item.total}}</div>
+
+            <form action="{% url 'delete_order' item.id %}" method="POST">
+                {% csrf_token %}
+                <div class="col-2">
+                    <input class="btn btn-outline-danger " type="submit" value="delete">
+                </div>
+            </form>
+
+        </div>
+        <hr class="">
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-danger">Your Havent made any Orders</div>
+                <div>
+                    <h4>
+                        <a href="{% url 'explore' %}" class="text-decoration-none text-reset p-2 rounded">Explore</a>
+                        and buy the things you want
+                    </h4>
+                </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content%}

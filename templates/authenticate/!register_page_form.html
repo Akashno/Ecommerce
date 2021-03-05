@@ -1,0 +1,25 @@
+<form action="" method="POST">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col">{{form.username}}</div>
+    </div>
+    <div class="row">
+        <div class="col">{{form.first_name}}</div>
+        <div class="col">{{form.last_name}}</div>
+    </div>
+    <div class="row">
+        <div class="col">{{form.email}}</div>
+    </div>
+    <div class="row">
+        <div class="col">{{form.password1}}</div>
+        <div class="col">{{form.password2}}</div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <input type="submit" value="Register" class="btn border text-light w-100">
+        </div>
+    </div>
+     <div class="d-flex justify-content-center">
+         <a href="{% url 'login_page' %}" class="text-light text-center">Already Registered! </a>
+     </div>
+    </form>

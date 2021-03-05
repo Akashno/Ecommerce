@@ -1,0 +1,90 @@
+{% extends 'base.html ' %}
+
+{% block title %}
+Index
+{% endblock title %}
+{% block style%}
+<style>
+    .side-bar{
+    position:fixed;
+    height:100vh;
+    background-color:var(--main-color)
+}
+h4{
+    margin-bottom:20px !important;
+
+    font-family: 'Niconne', cursive;
+}
+.main{
+overflow:scroll;}
+a{
+    margin-bottom:20px !important;
+    font-family: 'Belleza', sans-serif;
+}
+a:hover{
+    background-color:var(--secondary-color);
+}
+.card img{
+width:198px;
+height:230px;
+object-fit:contain;
+
+}
+.card-title{
+width:158px;
+height:57px;
+
+}.card-img-top{
+width:198px;
+min-height:230px;
+
+}
+.card {
+width:200px;
+height:250px;
+}
+.product-row{
+    margin-top:160px;
+}
+</style>
+<!--.main-bar{-->
+<!--    background-color:-->
+<!--}-->
+{% endblock style%}
+{% block content%}
+<div class="row">
+       {% include 'user/!side-bar.html' %}
+    <div class="col-md-10 col-sm-12 main">
+        <div class="container-fluid mt-5">
+
+            {% for product in products %}
+              {% if forloop.first %}<div class="row ">{% endif %}
+                <div class="col">
+                <div class="card">
+                    <img
+                        src="{{product.image.url}}"
+                         class="card-img-top"
+                        alt="product image"
+                        />
+                    <div class="card-body">
+                        <h6 class="card-title">{{product.name}}</h6>
+                        <p>Rs. {{product.price}}</p>
+                            <form action="{% url 'add_to_cart' product.id 'kids' %}">
+                               {% if request.user.is_authenticated %}
+                                    <input type="submit"  class="btn btn-primary " value="Add to cart">
+                                    {% else  %}
+<!--                                    <a href="{% url 'login_page' %}" class="btn btn-primary ">Add to cart</a>-->
+                                    {% endif %}
+                            </form>
+                    </div>
+                </div>
+                    </div>
+                {% if forloop.counter|divisibleby:4 %}</div><div class="row product-row">{% endif %}
+                {% if forloop.last %}</div>{% endif %}
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+{% endblock content%}

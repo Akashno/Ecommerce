@@ -1,0 +1,55 @@
+<div class="container-fluid p-5" style="background-color:#333333; color:#eeeeee; font-size:15px;">
+    <div class="row "  >
+        <div class="col">
+            <h6>Contact us</h6>
+            <hr>
+            <p><i class="fas fa-phone-square-alt"></i> Phone:+91 6366254647</p>
+            <p><i class="fab fa-facebook-f"></i> facebook:UptownBoutique</p>
+            <p><i class="fab fa-instagram"></i> Instagram:@UptownBoutique</p>
+            <p><i class="fab fa-twitter"></i> tweeter:@UptownBoutique</p>
+        </div>
+        <div class="col ">
+            <h6>Message us</h6>
+            <hr>
+
+            <div class="container">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                <div class="row ">
+
+                    <div class="col-md-6 col-sm-12 ">
+
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="email" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea class="form-control" name="message" id="message" cols="30" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col">
+                    <input type="submit" value="Send message" class="btn btn-dark w-100">
+                        </div>
+                </div>
+                      {% for message in messages %}
+            <p class=" text-success">{{message}}</p>
+        {% endfor %}
+                    </form>
+            </div>
+        </div>
+
+    </div>
+</div>

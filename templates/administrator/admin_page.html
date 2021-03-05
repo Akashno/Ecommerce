@@ -1,0 +1,65 @@
+{% extends 'base.html ' %}
+{% load static %}
+{% block title %}
+Index
+{% endblock title %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'user/css/index.css' %}">
+
+{% endblock style%}
+{% block content%}
+<h3 class="bg-dark text-light text-center p-3 d-flex justify-content-between"><span>Admin Page</span> <span class="h6 "><a href="{% url 'logout_page' %}">Logout</a></span> </h3>
+ {% for message in messages %}
+        <div class="alert alert-info">
+            {{message}}
+        </div>
+    {% endfor %}
+<div class="container-fluid">
+    {% if orders %}
+
+    <h4 class="text-center mt-5 bg-info text-light p-3 rounded w-50 mx-auto">Order verification</h4>
+  <div class="row mb-2 border border-info rounded w-75 mx-auto p-3 ">
+          <div class="col">Username</div>
+          <div class="col">Product</div>
+          <div class="col">quantity</div>
+          <div class="col">Total amount</div>
+          <div class="col">Order Status</div>
+          <div class="col h6">Action</div>
+</div>
+     {% for order in orders %}
+      <div class="row mb-3 border border-success rounded w-75  mx-auto p-3" >
+          <div class="col">{{order.user}}</div>
+          <div class="col">{{order.product}}</div>
+          <div class="col">{{order.count}}</div>
+          <div class="col">{{order.total}}</div>
+          <div class="col">
+              Order Pending
+          </div>
+          <div class="col " >
+              <form action="{% url 'admin_approval' order.id %}" method="post" >
+                  {% csrf_token %}
+                <div class="d-flex">
+                    <input type="submit" class="btn  btn-success btn-sm w-50 btn-inline" name="deliver_order" value="Deliver" />
+                    <input type="submit" class="btn btn-danger btn-sm w-50 btn-inline" name="cancel_order" value="Cancel" />
+                </div>
+              </form>
+
+          </div>
+      </div>
+      {% endfor %}
+    {% else %}
+    <div class="alert alert-danger">No pending orders</div>
+    <h4>Messages from everyone</h4>
+    {% for m in messages_all %}
+        <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{m.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{m.email}}</h6>
+                         <p class="card-text">{{m.message}}</p>
+
+                </div>
+        </div>
+    {% endfor %}
+
+    {% endif %}</div>
+{% endblock content%}

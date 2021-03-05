@@ -1,0 +1,15 @@
+{% extends 'base.html ' %}
+{% load static %}
+{% block title %}
+Index
+{% endblock title %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'user/css/index.css' %}">
+
+{% endblock style%}
+{% block content%}
+<div class="row">
+    {% include 'user/!side-bar.html' %}
+    <div class="col-md-10 col-sm-12 main"></div>
+</div>
+{% endblock content%}

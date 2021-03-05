@@ -1,0 +1,49 @@
+{% extends 'base.html ' %}
+
+{% block title%}
+Registration
+{% endblock title%}
+
+{% block style%}
+<style>
+body{
+    background-color:#A88E6D !important;
+}
+.register-page-left{
+    border-radius:40px 0px 0px 40px;
+    background:url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+}
+.register-page-right{
+    border-radius:0px 40px 40px 0px;
+    background-color:#5D4A33;
+}
+h3{
+color:#f3f3f3;
+}
+.register-container{
+    margin-top:100px;
+}
+
+</style>
+{% endblock style%}
+
+
+{% block content%}
+<div class="container w-75 register-container">
+
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-12 col-xs-12  register-page-left"></div>
+            <div class="col-md-6 col-sm-12 col-xs-12 p-5 register-page-right">
+                <h3 class="text-center">Registeration</h3>
+                {% include 'authenticate/!register_page_form.html' %}
+                {% for message in messages %}
+                    {% if form.errors.username %}<p class="text-danger">{{form.errors.username}}</p>{% endif %}
+                    {% if form.errors.password2 %}<p class="text-danger">{{form.errors.password2}}</p>{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+</div>
+{% endblock content%}

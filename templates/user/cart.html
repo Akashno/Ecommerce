@@ -1,0 +1,64 @@
+{% extends 'base.html ' %}
+{% load static %}
+{% block title %}
+Index
+{% endblock title %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'user/css/index.css' %}">
+{% endblock style%}
+{% block content%}
+<div class="row">
+      {% include 'user/!side-bar.html' %}
+
+    <div class="col-md-10  col-sm-12 main d-flex flex-column justify-content-center align-items-center">
+         {% if items %}
+        <div class="row  w-75 mb-2 h6 bg-secondary p-3 text-light text-center">
+            <div class="col-6">Name</div>
+            <div class="col-2">quantity</div>
+            <div class="col-2">Total</div>
+            <div class="col-2 text-left">Action</div>
+        </div>
+
+            {% for item in items %}
+        <div class="row w-75 rounded mb-2 text-center " style="background-color:var(--secondary-color);">
+            <div class="col-6">{{item.product.name}}</div>
+            <div class="col-2">{{item.count}}</div>
+            <div class="col-2">{{item.get_total}}</div>
+            <form action="{% url 'delete_from_cart' item.id %}" method="POST">
+                {% csrf_token %}
+                <div class="col-2">
+                    <input class="btn btn-outline-danger " type="submit" value="-">
+                </div>
+            </form>
+
+        </div>
+
+
+            {% endfor %}
+        <div class="row  w-75 mb-2 h6 bg-secondary p-3 text-light text-center">
+            <div class="col-6"></div>
+            <div class="col-2">{{pc}}</div>
+            <div class="col-2">Rs. {{pt}}</div>
+            <div class="col-2 text-left"></div>
+        </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col"><a href="{% url 'empty_cart' %}" class="btn btn-secondary p-3">Reset</a></div>
+                <div class="col"><a href="{% url 'place_order' %}" class="btn btn-success p-3">Order</a></div>
+            </div>
+
+            {% else %}
+                <div class="alert alert-danger">Your cart is empty</div>
+                <div>
+                    <h4>
+                        <a href="{% url 'explore' %}" class="text-decoration-none text-reset p-2 rounded">Explore</a>
+                        and save the products to your Cart
+                    </h4>
+                </div>
+            {% endif %}
+        {% for message in messages %}
+        <div class="alert alert-info alert-sm">{{message}}</div>
+    {% endfor %}
+    </div>
+
+</div>
+{% endblock content%}
