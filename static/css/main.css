@@ -1,0 +1,45 @@
+ ::-webkit-scrollbar {
+  display: none;
+}
+ .side-bar{
+    position:fixed;
+    height:100vh;
+    background-color:var(--main-color)
+}
+h4{
+    margin-bottom:20px !important;
+
+    font-family: 'Niconne', cursive;
+}
+
+a{
+    margin-bottom:20px !important;
+    font-family: 'Belleza', sans-serif;
+}
+a:hover{
+    background-color:var(--secondary-color);
+}
+.card img{
+min-width:198px;
+min-height:230px;
+object-fit:contain;
+
+}
+
+.card {
+width:200px;
+height:250px;
+
+}
+.card-title{
+width:158px;
+height:57px;
+
+}
+.product-row{
+    margin-top:170px;
+}
+.main{
+height:700px;
+overflow-x:scroll;
+}

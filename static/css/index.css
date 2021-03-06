@@ -1,0 +1,73 @@
+ ::-webkit-scrollbar {
+  display: none;
+}
+    .side-bar{
+    height:100vh;
+    background-color:var(--main-color)
+}
+
+h1{
+
+    font-family: 'Niconne', cursive;
+    font-size:90px !important;
+    font-weight:bolder;
+     text-shadow: 2px 2px white;
+    color:var(--main-color);
+}
+h4{
+    margin-bottom:20px !important;
+    font-family: 'Niconne', cursive;
+}
+h3{
+    font-size:70px !important;
+    color:grey;
+    margin-bottom:20px !important;
+     font-family: 'Belleza', sans-serif;
+}
+a{
+    margin-bottom:20px !important;
+    font-family: 'Belleza', sans-serif;
+}
+
+.card img{
+min-width:198px;
+min-height:230px;
+object-fit:contain;
+
+}
+
+.card {
+width:200px;
+height:250px;
+
+}
+.card-title{
+width:158px;
+height:57px;
+
+}
+a:hover{
+    background-color:var(--secondary-color);
+}
+.first-left{
+    padding-top:100px;
+}
+.main{
+height:100vh;
+overflow-x:scroll;
+}
+.first-section{
+height:100vh;
+background:url('/static/user/image/girlOne.jpg');
+background-size:cover;
+}
+.second-section{
+height:100%;
+background-color:#C8C7C5;
+}
+
+.explore{
+    margin-bottom:0px !important;
+    color:var(--main-color) !important;
+    }
+
